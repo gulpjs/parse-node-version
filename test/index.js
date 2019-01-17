@@ -48,4 +48,13 @@ describe('parseNodeVersion', function() {
     expect(invalid).toThrow('Unable to parse: v8.111.8');
     done();
   });
+
+  it('matches pre releases', function(done) {
+    var nodeVersion = parseNodeVersion('v22.0.0-pre');
+    expect(nodeVersion.major).toEqual(22);
+    expect(nodeVersion.minor).toEqual(0);
+    expect(nodeVersion.patch).toEqual(0);
+    expect(nodeVersion.pre).toEqual('pre');
+    done();
+  });
 });

@@ -24,6 +24,8 @@ console.log(nodeVersion.major, nodeVersion.minor, nodeVersion.patch);
 
 Takes a node version string (usually `process.version`) and returns an object with the `major`, `minor`, and `patch` keys which will all be parsed digits.
 
+Pre-releases will also be parsed. In such cases the returned object contains the `pre` key on top of the already mentioned keys.
+
 ## License
 
 MIT
