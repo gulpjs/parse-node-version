@@ -22,7 +22,7 @@ console.log(nodeVersion.major, nodeVersion.minor, nodeVersion.patch);
 
 ### parseVersion(nodeVersionString)
 
-Takes a node version string (usually `process.version`) and returns an object with the `major`, `minor`, and `patch` keys which will all be parsed digits.
+Takes a node version string (usually `process.version`) and returns an object with the `major`, `minor`, and `patch` keys which will all be parsed digits. If available, the pre-release and build metadata labels are also returned with the 'preRelease' and 'buildMetadata' keys respectively.
 
 ## License
 

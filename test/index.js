@@ -48,4 +48,41 @@ describe('parseNodeVersion', function() {
     expect(invalid).toThrow('Unable to parse: v8.111.8');
     done();
   });
+
+  it('matches pre-release label with single identifier', function(done) {
+    var nodeVersion = parseNodeVersion('v1.2.3-alpha');
+    expect(nodeVersion.major).toEqual(1);
+    expect(nodeVersion.minor).toEqual(2);
+    expect(nodeVersion.patch).toEqual(3);
+    expect(nodeVersion.preRelease).toEqual('alpha');
+    done();
+  });
+
+  it('matches pre-release label with multiple identifiers', function(done) {
+    var nodeVersion = parseNodeVersion('v1.2.3-x.7.z.92');
+    expect(nodeVersion.major).toEqual(1);
+    expect(nodeVersion.minor).toEqual(2);
+    expect(nodeVersion.patch).toEqual(3);
+    expect(nodeVersion.preRelease).toEqual('x.7.z.92');
+    done();
+  });
+
+  it('matches build metadata', function(done) {
+    var nodeVersion = parseNodeVersion('v10.15.0+0-b20181231T20014594');
+    expect(nodeVersion.major).toEqual(10);
+    expect(nodeVersion.minor).toEqual(15);
+    expect(nodeVersion.patch).toEqual(0);
+    expect(nodeVersion.buildMetadata).toEqual('0-b20181231T20014594');
+    done();
+  });
+
+  it('matches pre-release label and build metadata', function(done) {
+    var nodeVersion = parseNodeVersion('v1.0.0-beta+exp.sha.5114f85');
+    expect(nodeVersion.major).toEqual(1);
+    expect(nodeVersion.minor).toEqual(0);
+    expect(nodeVersion.patch).toEqual(0);
+    expect(nodeVersion.preRelease).toEqual('beta');
+    expect(nodeVersion.buildMetadata).toEqual('exp.sha.5114f85');
+    done();
+  });
 });
