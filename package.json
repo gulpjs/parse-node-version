@@ -1,6 +1,6 @@
 {
   "name": "parse-node-version",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Turn node's process.version into something useful.",
   "author": "Gulp Team <team@gulpjs.com> (http://gulpjs.com/)",
   "contributors": [
