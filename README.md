@@ -6,7 +6,7 @@
 
 # parse-node-version
 
-[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Travis Build Status][travis-image]][travis-url] [![AppVeyor Build Status][appveyor-image]][appveyor-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![Gitter chat][gitter-image]][gitter-url]
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][ci-image]][ci-url] [![Coveralls Status][coveralls-image]][coveralls-url]
 
 Turn node's process.version into something useful.
 
@@ -34,18 +34,15 @@ Takes a node version string (usually `process.version`) and returns an object wi
 
 MIT
 
-[downloads-image]: http://img.shields.io/npm/dm/parse-node-version.svg
+
+<!-- prettier-ignore-start -->
+[downloads-image]: http://img.shields.io/npm/dm/parse-node-version.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/parse-node-version
-[npm-image]: http://img.shields.io/npm/v/parse-node-version.svg
+[npm-image]: http://img.shields.io/npm/v/parse-node-version.svg?style=flat-square
 
-[travis-url]: https://travis-ci.org/gulpjs/parse-node-version
-[travis-image]: http://img.shields.io/travis/gulpjs/parse-node-version.svg?label=travis-ci
-
-[appveyor-url]: https://ci.appveyor.com/project/gulpjs/parse-node-version
-[appveyor-image]: https://img.shields.io/appveyor/ci/gulpjs/parse-node-version.svg?label=appveyor
+[ci-url]: https://github.com/gulpjs/parse-node-version/actions?query=workflow:dev
+[ci-image]: https://img.shields.io/github/workflow/status/gulpjs/parse-node-version/dev?style=flat-square
 
 [coveralls-url]: https://coveralls.io/r/gulpjs/parse-node-version
-[coveralls-image]: http://img.shields.io/coveralls/gulpjs/parse-node-version/master.svg
-
-[gitter-url]: https://gitter.im/gulpjs/gulp
-[gitter-image]: https://badges.gitter.im/gulpjs/gulp.svg
+[coveralls-image]: http://img.shields.io/coveralls/gulpjs/parse-node-version/master.svg?style=flat-square
+<!-- prettier-ignore-end -->
