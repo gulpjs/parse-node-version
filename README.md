@@ -34,7 +34,6 @@ Takes a node version string (usually `process.version`) and returns an object wi
 
 MIT
 
-
 <!-- prettier-ignore-start -->
 [downloads-image]: http://img.shields.io/npm/dm/parse-node-version.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/parse-node-version

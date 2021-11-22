@@ -1,7 +1,9 @@
 'use strict';
 
 function parseNodeVersion(version) {
-  var match = version.match(/^v(\d{1,2})\.(\d{1,2})\.(\d{1,2})(?:-([0-9A-Za-z-.]+))?(?:\+([0-9A-Za-z-.]+))?$/); // eslint-disable-line max-len
+  var match = version.match(
+    /^v(\d{1,2})\.(\d{1,2})\.(\d{1,2})(?:-([0-9A-Za-z-.]+))?(?:\+([0-9A-Za-z-.]+))?$/
+  ); // eslint-disable-line max-len
   if (!match) {
     throw new Error('Unable to parse: ' + version);
   }
