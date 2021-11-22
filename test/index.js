@@ -8,9 +8,9 @@ describe('parseNodeVersion', function() {
 
   it('takes process.version and returns all numbers', function(done) {
     var nodeVersion = parseNodeVersion(process.version);
-    expect(nodeVersion.major).toBeA('number');
-    expect(nodeVersion.minor).toBeA('number');
-    expect(nodeVersion.patch).toBeA('number');
+    expect(typeof nodeVersion.major).toEqual('number');
+    expect(typeof nodeVersion.minor).toEqual('number');
+    expect(typeof nodeVersion.patch).toEqual('number');
     done();
   });
 
@@ -51,9 +51,9 @@ describe('parseNodeVersion', function() {
 
   it('always returns strings if no pre-release or build metadata', function(done) {
     var nodeVersion = parseNodeVersion(process.version);
-    expect(nodeVersion.pre).toBeA('string');
+    expect(typeof nodeVersion.pre).toEqual('string');
     expect(nodeVersion.pre).toEqual('');
-    expect(nodeVersion.build).toBeA('string');
+    expect(typeof nodeVersion.build).toEqual('string');
     expect(nodeVersion.build).toEqual('');
     done();
   });
