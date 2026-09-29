@@ -13,14 +13,14 @@ Turn node's process.version into something useful.
 ## Usage
 
 ```js
-var nodeVersion = require('parse-node-version')(process.version);
+var nodeVersion = require("parse-node-version")(process.version);
 
 console.log(
   nodeVersion.major,
   nodeVersion.minor,
   nodeVersion.patch,
   nodeVersion.pre,
-  nodeVersion.build
+  nodeVersion.build,
 );
 ```
 
