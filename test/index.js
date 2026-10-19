@@ -1,90 +1,85 @@
 "use strict";
-
-var expect = require("expect");
+var assert = require("node:assert");
+var { describe, it } = require("node:test");
 
 var parseNodeVersion = require("../");
 
 describe("parseNodeVersion", function () {
-  it("takes process.version and returns all numbers", function (done) {
+  it("takes process.version and returns all numbers", function () {
     var nodeVersion = parseNodeVersion(process.version);
-    expect(typeof nodeVersion.major).toEqual("number");
-    expect(typeof nodeVersion.minor).toEqual("number");
-    expect(typeof nodeVersion.patch).toEqual("number");
-    done();
+    assert.deepStrictEqual(typeof nodeVersion.major, "number");
+    assert.deepStrictEqual(typeof nodeVersion.minor, "number");
+    assert.deepStrictEqual(typeof nodeVersion.patch, "number");
   });
 
-  it("takes any string formatted like a v8.8.8 and returns all numbers", function (done) {
+  it("takes any string formatted like a v8.8.8 and returns all numbers", function () {
     var nodeVersion = parseNodeVersion("v8.8.8");
-    expect(nodeVersion.major).toEqual(8);
-    expect(nodeVersion.minor).toEqual(8);
-    expect(nodeVersion.patch).toEqual(8);
-    done();
+    assert.deepStrictEqual(nodeVersion.major, 8);
+    assert.deepStrictEqual(nodeVersion.minor, 8);
+    assert.deepStrictEqual(nodeVersion.patch, 8);
   });
 
-  it("throws if given an invalid version", function (done) {
+  it("throws if given an invalid version", function () {
     function invalid() {
       parseNodeVersion("8.8.8");
     }
 
-    expect(invalid).toThrow("Unable to parse: 8.8.8");
-    done();
+    assert.throws(invalid, {
+      message: "Unable to parse: 8.8.8",
+    });
   });
 
-  it("matches on exactly the version - it cannot be padded", function (done) {
+  it("matches on exactly the version - it cannot be padded", function () {
     function invalid() {
       parseNodeVersion("vv8.8.8");
     }
 
-    expect(invalid).toThrow("Unable to parse: vv8.8.8");
-    done();
+    assert.throws(invalid, {
+      message: "Unable to parse: vv8.8.8",
+    });
   });
 
-  it("only matches 2 digits in any position", function (done) {
+  it("only matches 2 digits in any position", function () {
     function invalid() {
       parseNodeVersion("v8.111.8");
     }
 
-    expect(invalid).toThrow("Unable to parse: v8.111.8");
-    done();
+    assert.throws(invalid, {
+      message: "Unable to parse: v8.111.8",
+    });
   });
 
-  it("always returns strings if no pre-release or build metadata", function (done) {
+  it("always returns strings if no pre-release or build metadata", function () {
     var nodeVersion = parseNodeVersion(process.version);
-    expect(typeof nodeVersion.pre).toEqual("string");
-    expect(nodeVersion.pre).toEqual("");
-    expect(typeof nodeVersion.build).toEqual("string");
-    expect(nodeVersion.build).toEqual("");
-    done();
+    assert.deepStrictEqual(typeof nodeVersion.pre, "string");
+    assert.deepStrictEqual(nodeVersion.pre, "");
+    assert.deepStrictEqual(typeof nodeVersion.build, "string");
+    assert.deepStrictEqual(nodeVersion.build, "");
   });
 
-  it("matches pre-release label with single identifier", function (done) {
+  it("matches pre-release label with single identifier", function () {
     var nodeVersion = parseNodeVersion("v1.2.3-alpha");
-    expect(nodeVersion.pre).toEqual("alpha");
-    done();
+    assert.deepStrictEqual(nodeVersion.pre, "alpha");
   });
 
-  it("matches pre-release label with multiple identifiers", function (done) {
+  it("matches pre-release label with multiple identifiers", function () {
     var nodeVersion = parseNodeVersion("v1.2.3-x.7.z.92");
-    expect(nodeVersion.pre).toEqual("x.7.z.92");
-    done();
+    assert.deepStrictEqual(nodeVersion.pre, "x.7.z.92");
   });
 
-  it("matches pre-release label with dashes", function (done) {
+  it("matches pre-release label with dashes", function () {
     var nodeVersion = parseNodeVersion("v1.2.3-x-7-z.92");
-    expect(nodeVersion.pre).toEqual("x-7-z.92");
-    done();
+    assert.deepStrictEqual(nodeVersion.pre, "x-7-z.92");
   });
 
-  it("matches build metadata", function (done) {
+  it("matches build metadata", function () {
     var nodeVersion = parseNodeVersion("v10.15.0+0-b20181231T20014594");
-    expect(nodeVersion.build).toEqual("0-b20181231T20014594");
-    done();
+    assert.deepStrictEqual(nodeVersion.build, "0-b20181231T20014594");
   });
 
-  it("matches pre-release label and build metadata", function (done) {
+  it("matches pre-release label and build metadata", function () {
     var nodeVersion = parseNodeVersion("v1.0.0-beta+exp.sha.5114f85");
-    expect(nodeVersion.pre).toEqual("beta");
-    expect(nodeVersion.build).toEqual("exp.sha.5114f85");
-    done();
+    assert.deepStrictEqual(nodeVersion.pre, "beta");
+    assert.deepStrictEqual(nodeVersion.build, "exp.sha.5114f85");
   });
 });
