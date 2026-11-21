@@ -1,6 +1,5 @@
-"use strict";
 
-function parseNodeVersion(version) {
+export default function parseNodeVersion(version) {
   var match = version.match(
     /^v(\d{1,2})\.(\d{1,2})\.(\d{1,2})(?:-([0-9A-Za-z-.]+))?(?:\+([0-9A-Za-z-.]+))?$/,
   ); // eslint-disable-line max-len
@@ -18,5 +17,3 @@ function parseNodeVersion(version) {
 
   return res;
 }
-
-module.exports = parseNodeVersion;

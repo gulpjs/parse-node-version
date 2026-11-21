@@ -1,8 +1,7 @@
-"use strict";
-var assert = require("node:assert");
-var { describe, it } = require("node:test");
+import assert from "node:assert";
+import { describe, it } from "node:test";
 
-var parseNodeVersion = require("../");
+import parseNodeVersion from "../index.js";
 
 describe("parseNodeVersion", function () {
   it("takes process.version and returns all numbers", function () {
