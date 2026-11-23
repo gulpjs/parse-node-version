@@ -13,7 +13,9 @@ Turn node's process.version into something useful.
 ## Usage
 
 ```js
-var nodeVersion = require("parse-node-version")(process.version);
+import parse from "parse-node-version";
+
+const nodeVersion = parse(process.version);
 
 console.log(
   nodeVersion.major,
